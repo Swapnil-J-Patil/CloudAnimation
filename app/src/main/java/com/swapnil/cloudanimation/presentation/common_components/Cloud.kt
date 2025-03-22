@@ -1,4 +1,4 @@
-package com.swapnil.cloudanimation
+package com.swapnil.cloudanimation.presentation.common_components
 
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable

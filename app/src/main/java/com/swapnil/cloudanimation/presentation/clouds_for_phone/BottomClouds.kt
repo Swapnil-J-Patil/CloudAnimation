@@ -1,4 +1,4 @@
-package com.swapnil.cloudanimation
+package com.swapnil.cloudanimation.presentation.clouds_for_phone
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -11,11 +11,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.swapnil.cloudanimation.R
+import com.swapnil.cloudanimation.presentation.common_components.Cloud
 
 @Composable
 fun BottomClouds(modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(Color.Transparent),
         contentAlignment = Alignment.BottomCenter

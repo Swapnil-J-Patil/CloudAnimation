@@ -1,12 +1,17 @@
-package com.swapnil.cloudanimation.ui.theme
+package com.swapnil.cloudanimation.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.swapnil.cloudanimation.R
 
 // Set of Material typography styles to start with
+val Poppins = FontFamily(Font(R.font.poppins))
+val SupercellMagicFont = FontFamily(Font(R.font.supercell_font))
+
 val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,

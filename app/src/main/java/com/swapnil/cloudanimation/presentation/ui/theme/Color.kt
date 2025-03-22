@@ -1,4 +1,4 @@
-package com.swapnil.cloudanimation.ui.theme
+package com.swapnil.cloudanimation.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
