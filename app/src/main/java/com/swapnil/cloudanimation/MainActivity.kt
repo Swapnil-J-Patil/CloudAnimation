@@ -1,6 +1,8 @@
 package com.swapnil.cloudanimation
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -26,11 +28,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.swapnil.cloudanimation.presentation.clouds_for_phone.AnimatedCloudsScreen
+import com.swapnil.cloudanimation.presentation.clouds_for_phone.AnimatedCloudsScreenLandscape
 import com.swapnil.cloudanimation.presentation.clouds_for_phone.BottomClouds
 import com.swapnil.cloudanimation.presentation.common_components.InfinityMotionMagnifyingGlass
 import com.swapnil.cloudanimation.presentation.common_components.SearchingText
 import com.swapnil.cloudanimation.presentation.clouds_for_phone.TopClouds
 import com.swapnil.cloudanimation.presentation.clouds_for_tab.AnimatedCloudsScreenTab
+import com.swapnil.cloudanimation.presentation.clouds_for_tab.AnimatedCloudsScreenTabLandscape
 import com.swapnil.cloudanimation.presentation.ui.theme.CloudAnimationTheme
 import com.swapnil.cloudanimation.presentation.ui.theme.Purple80
 import kotlinx.coroutines.delay
@@ -41,14 +45,14 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CloudAnimationTheme {
-                var cloudsVisibility by remember {
-                    mutableStateOf(false)
-                }
-                var magnifierVisibility by remember {
-                    mutableStateOf(false)
-                }
+                var cloudsVisibility by remember { mutableStateOf(false) }
+                var magnifierVisibility by remember { mutableStateOf(false) }
+
                 val configuration = LocalConfiguration.current
-                val isTab = configuration.screenWidthDp.dp > 600.dp
+                val isPortrait = configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+
+                // ✅ Improved Tablet Detection
+                val isTab = configuration.screenWidthDp >= 600 && configuration.screenHeightDp >= 600
 
                 LaunchedEffect(Unit) {
                     delay(500)
@@ -59,20 +63,40 @@ class MainActivity : ComponentActivity() {
                     magnifierVisibility = false
                     cloudsVisibility = false
                 }
-                if(isTab)
-                {
-                    AnimatedCloudsScreenTab(
-                        searchText = "Searching for Opponents...",
-                        cloudVisibility = cloudsVisibility,
-                        magnifyingGlassVisibility = magnifierVisibility
-                    )
-                }
-                else{
-                    AnimatedCloudsScreen(
-                        searchText = "Searching for Opponents...",
-                        cloudVisibility = cloudsVisibility,
-                        magnifyingGlassVisibility = magnifierVisibility
-                    )
+
+                when {
+                    isTab && isPortrait -> {
+                        Log.d("currentStatus", "Tab Portrait ")
+                        AnimatedCloudsScreenTab(
+                            searchText = "Searching for Opponents...",
+                            cloudVisibility = cloudsVisibility,
+                            magnifyingGlassVisibility = magnifierVisibility
+                        )
+                    }
+                    isTab && !isPortrait -> {
+                        Log.d("currentStatus", "Tab Landscape ")
+                        AnimatedCloudsScreenTabLandscape(
+                            searchText = "Searching for Opponents...",
+                            cloudVisibility = cloudsVisibility,
+                            magnifyingGlassVisibility = magnifierVisibility
+                        )
+                    }
+                    !isTab && isPortrait -> {
+                        Log.d("currentStatus", "Phone Portrait ")
+                        AnimatedCloudsScreen(
+                            searchText = "Searching for Opponents...",
+                            cloudVisibility = cloudsVisibility,
+                            magnifyingGlassVisibility = magnifierVisibility
+                        )
+                    }
+                    else -> {
+                        Log.d("currentStatus", "Phone Landscape ")
+                        AnimatedCloudsScreenLandscape(
+                            searchText = "Searching for Opponents...",
+                            cloudVisibility = cloudsVisibility,
+                            magnifyingGlassVisibility = magnifierVisibility
+                        )
+                    }
                 }
             }
         }

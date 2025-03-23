@@ -12,7 +12,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -23,15 +22,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.swapnil.cloudanimation.R
-import com.swapnil.cloudanimation.presentation.clouds_for_phone.BottomClouds
-import com.swapnil.cloudanimation.presentation.clouds_for_phone.TopClouds
 import com.swapnil.cloudanimation.presentation.common_components.InfinityMotionMagnifyingGlass
 import com.swapnil.cloudanimation.presentation.common_components.SearchingText
 import com.swapnil.cloudanimation.presentation.ui.theme.Purple80
-import kotlinx.coroutines.delay
 
 @Composable
-fun AnimatedCloudsScreenTabLandscape(
+fun AnimatedCloudsScreenTab(
     cloudVisibility: Boolean,
     magnifyingGlassVisibility: Boolean,
     searchText: String,
@@ -56,6 +52,8 @@ fun AnimatedCloudsScreenTabLandscape(
             .fillMaxSize()
             .background(Purple80)
     ) {
+       // TopCloudsTab(modifier = Modifier.offset(y=250.dp))
+
         AnimatedVisibility(magnifierVisibility) {
             Box(
                 modifier = Modifier
@@ -90,10 +88,15 @@ fun AnimatedCloudsScreenTabLandscape(
                 )
             )
         ) {
+            BottomCloudsTab(modifier = Modifier.offset(y=-350.dp))
+            BottomCloudsTab(modifier = Modifier.offset(x=-400.dp,y=-300.dp))
+            BottomCloudsTab(modifier = Modifier.offset(x=400.dp,y=-300.dp))
+
             BottomCloudsTab(modifier = Modifier.offset(x=-400.dp,y=-100.dp))
             BottomCloudsTab(modifier = Modifier.offset(x=400.dp,y=-100.dp))
             BottomCloudsTab(modifier = Modifier.offset(x=-400.dp,y=100.dp))
             BottomCloudsTab(modifier = Modifier.offset(x=400.dp,y=100.dp))
+
             BottomCloudsTab()
         }
 
@@ -124,9 +127,13 @@ fun AnimatedCloudsScreenTabLandscape(
                 )
             )
         ) {
-            TopCloudsTab(modifier = Modifier.offset(x=-400.dp,y=-100.dp))
-            TopCloudsTab(modifier = Modifier.offset(x=400.dp,y=-100.dp))
-            TopCloudsTab()
+            TopCloudsTab(modifier = Modifier.offset(y=300.dp))
+            TopCloudsTab(modifier = Modifier.offset(x=300.dp,y=250.dp))
+            TopCloudsTab(modifier = Modifier.offset(x=-300.dp,y=250.dp))
+
+            TopCloudsTab(modifier = Modifier.offset(x=-400.dp,y=-200.dp))
+            TopCloudsTab(modifier = Modifier.offset(x=400.dp,y=-200.dp))
+            TopCloudsTab(modifier = Modifier.offset(y=-100.dp))
         }
         AnimatedVisibility(
             visible = magnifierVisibility,
@@ -136,7 +143,7 @@ fun AnimatedCloudsScreenTabLandscape(
             InfinityMotionMagnifyingGlass(image = searchImage,
                 imageWidth = 100.dp,
                 imageHeight = 100.dp
-                )
+            )
             SearchingText(searchText)
         }
     }

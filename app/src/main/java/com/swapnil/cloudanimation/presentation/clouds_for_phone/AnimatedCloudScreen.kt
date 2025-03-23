@@ -35,6 +35,9 @@ fun AnimatedCloudsScreen(
     cloudVisibility: Boolean,
     magnifyingGlassVisibility: Boolean,
     searchText: String,
+    cloudAnimationDuration: Int = 1000,
+    textAnimationDuration: Int = 1000,
+    searchImage: Int = R.drawable.magnifying_glass
 ) {
     var cloudsVisibility by remember {
         mutableStateOf(false)
@@ -54,6 +57,7 @@ fun AnimatedCloudsScreen(
             .background(Purple80)
     ) {
 
+
         AnimatedVisibility(magnifierVisibility) {
             Box(
                 modifier = Modifier
@@ -66,32 +70,32 @@ fun AnimatedCloudsScreen(
             enter = slideInVertically(
                 initialOffsetY = { it }, // Starts from full height (bottom)
                 animationSpec = tween(
-                    durationMillis = 1000, // Slightly increased duration for a smoother feel
+                    durationMillis = cloudAnimationDuration, // Slightly increased duration for a smoother feel
                     easing = LinearOutSlowInEasing // Smoother easing for entering animation
                 )
             ) + fadeIn(
                 animationSpec = tween(
-                    durationMillis = 1000,
+                    durationMillis = cloudAnimationDuration,
                     easing = LinearOutSlowInEasing
                 )
             ),
             exit = slideOutVertically(
                 targetOffsetY = { it }, // Moves to full height (bottom)
                 animationSpec = tween(
-                    durationMillis = 1000,
+                    durationMillis = cloudAnimationDuration,
                     easing = FastOutSlowInEasing // Keeps a natural exit motion
                 )
             ) + fadeOut(
                 animationSpec = tween(
-                    durationMillis = 1000,
+                    durationMillis = cloudAnimationDuration,
                     easing = FastOutSlowInEasing
                 )
             )
         ) {
-            BottomClouds(modifier = Modifier.offset(x=-100.dp,y=-50.dp))
-            BottomClouds(modifier = Modifier.offset(x=100.dp,y=-50.dp))
-            BottomClouds(modifier = Modifier.offset(x=-100.dp,y=50.dp))
-            BottomClouds(modifier = Modifier.offset(x=-100.dp,y=50.dp))
+            BottomClouds(modifier = Modifier.offset(x = -100.dp, y = -50.dp))
+            BottomClouds(modifier = Modifier.offset(x = 100.dp, y = -50.dp))
+            BottomClouds(modifier = Modifier.offset(x = -100.dp, y = 50.dp))
+            BottomClouds(modifier = Modifier.offset(x = -100.dp, y = 50.dp))
             BottomClouds()
         }
 
@@ -100,38 +104,38 @@ fun AnimatedCloudsScreen(
             enter = slideInVertically(
                 initialOffsetY = { -it }, // Starts from off-screen (top)
                 animationSpec = tween(
-                    durationMillis = 1000,
+                    durationMillis = cloudAnimationDuration,
                     easing = LinearOutSlowInEasing
                 )
             ) + fadeIn(
                 animationSpec = tween(
-                    durationMillis = 1000,
+                    durationMillis = cloudAnimationDuration,
                     easing = LinearOutSlowInEasing
                 )
             ),
             exit = slideOutVertically(
                 targetOffsetY = { -it }, // Moves back to off-screen (top)
                 animationSpec = tween(
-                    durationMillis = 1000,
+                    durationMillis = cloudAnimationDuration,
                     easing = FastOutSlowInEasing
                 )
             ) + fadeOut(
                 animationSpec = tween(
-                    durationMillis = 1000,
+                    durationMillis = cloudAnimationDuration,
                     easing = FastOutSlowInEasing
                 )
             )
         ) {
-        TopCloudsTab(modifier = Modifier.offset(x=-100.dp,y=-50.dp))
-        TopCloudsTab(modifier = Modifier.offset(x=100.dp,y=-50.dp))
+            TopClouds(modifier = Modifier.offset(x = -100.dp, y = -50.dp))
+            TopClouds(modifier = Modifier.offset(x = 100.dp, y = -50.dp))
             TopClouds()
         }
         AnimatedVisibility(
             visible = magnifierVisibility,
-            enter = fadeIn(animationSpec = tween(1000)),  // Smooth fade-in over 1 second
-            exit = fadeOut(animationSpec = tween(1000))   // Smooth fade-out over 1 second
+            enter = fadeIn(animationSpec = tween(textAnimationDuration)),  // Smooth fade-in over 1 second
+            exit = fadeOut(animationSpec = tween(textAnimationDuration))   // Smooth fade-out over 1 second
         ) {
-            InfinityMotionMagnifyingGlass(R.drawable.magnifying_glass)
+            InfinityMotionMagnifyingGlass(searchImage)
             SearchingText(searchText)
         }
     }

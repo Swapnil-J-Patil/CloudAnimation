@@ -1,4 +1,4 @@
-package com.swapnil.cloudanimation.presentation.clouds_for_tab
+package com.swapnil.cloudanimation.presentation.clouds_for_phone
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.FastOutSlowInEasing
@@ -12,7 +12,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -23,15 +22,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.swapnil.cloudanimation.R
-import com.swapnil.cloudanimation.presentation.clouds_for_phone.BottomClouds
-import com.swapnil.cloudanimation.presentation.clouds_for_phone.TopClouds
+import com.swapnil.cloudanimation.presentation.clouds_for_tab.BottomCloudsTab
+import com.swapnil.cloudanimation.presentation.clouds_for_tab.TopCloudsTab
 import com.swapnil.cloudanimation.presentation.common_components.InfinityMotionMagnifyingGlass
 import com.swapnil.cloudanimation.presentation.common_components.SearchingText
 import com.swapnil.cloudanimation.presentation.ui.theme.Purple80
-import kotlinx.coroutines.delay
 
 @Composable
-fun AnimatedCloudsScreenTabLandscape(
+fun AnimatedCloudsScreenLandscape(
     cloudVisibility: Boolean,
     magnifyingGlassVisibility: Boolean,
     searchText: String,
@@ -56,6 +54,8 @@ fun AnimatedCloudsScreenTabLandscape(
             .fillMaxSize()
             .background(Purple80)
     ) {
+
+        //  BottomCloudsTab()
         AnimatedVisibility(magnifierVisibility) {
             Box(
                 modifier = Modifier
@@ -90,11 +90,9 @@ fun AnimatedCloudsScreenTabLandscape(
                 )
             )
         ) {
-            BottomCloudsTab(modifier = Modifier.offset(x=-400.dp,y=-100.dp))
-            BottomCloudsTab(modifier = Modifier.offset(x=400.dp,y=-100.dp))
-            BottomCloudsTab(modifier = Modifier.offset(x=-400.dp,y=100.dp))
-            BottomCloudsTab(modifier = Modifier.offset(x=400.dp,y=100.dp))
-            BottomCloudsTab()
+            BottomCloudsTab(modifier = Modifier.offset(x = 300.dp, y = 250.dp))
+            BottomCloudsTab(modifier = Modifier.offset(x = -300.dp, y = 250.dp))
+            BottomCloudsTab(modifier = Modifier.offset(y = 200.dp))
         }
 
         AnimatedVisibility(
@@ -124,19 +122,18 @@ fun AnimatedCloudsScreenTabLandscape(
                 )
             )
         ) {
-            TopCloudsTab(modifier = Modifier.offset(x=-400.dp,y=-100.dp))
-            TopCloudsTab(modifier = Modifier.offset(x=400.dp,y=-100.dp))
-            TopCloudsTab()
+            TopCloudsTab(modifier = Modifier.offset(x = -300.dp, y = -250.dp))
+            TopCloudsTab(modifier = Modifier.offset(x = 300.dp, y = -250.dp))
+            TopCloudsTab(Modifier.offset(y = -200.dp))
         }
         AnimatedVisibility(
             visible = magnifierVisibility,
             enter = fadeIn(animationSpec = tween(textAnimationDuration)),  // Smooth fade-in over 1 second
             exit = fadeOut(animationSpec = tween(textAnimationDuration))   // Smooth fade-out over 1 second
         ) {
-            InfinityMotionMagnifyingGlass(image = searchImage,
-                imageWidth = 100.dp,
-                imageHeight = 100.dp
-                )
+            InfinityMotionMagnifyingGlass(searchImage,
+                imageWidth = 70.dp,
+                imageHeight = 70.dp)
             SearchingText(searchText)
         }
     }

@@ -16,7 +16,11 @@ import com.swapnil.cloudanimation.R
 import com.swapnil.cloudanimation.presentation.common_components.Cloud
 
 @Composable
-fun BottomCloudsTab(modifier: Modifier = Modifier) {
+fun BottomCloudsTab(
+    modifier: Modifier = Modifier,
+    fogImage: Int = R.drawable.fog,
+    cloudImage: Int = R.drawable.cloud
+    ) {
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -27,71 +31,71 @@ fun BottomCloudsTab(modifier: Modifier = Modifier) {
         Cloud(modifier = Modifier.fillMaxWidth(0.5f)
             .height(300.dp)
             .offset(x=-80.dp,y=-120.dp),
-            id = R.drawable.fog
+            id = fogImage
         )
         Cloud(modifier = Modifier.fillMaxWidth(0.5f)
             .height(300.dp)
             .offset(x=-80.dp,y=-40.dp),
-            id = R.drawable.fog
+            id = fogImage
         )
         Cloud(modifier = Modifier.fillMaxWidth(0.5f)
             .height(300.dp)
             .offset(x=120.dp,y=-40.dp),
-            id = R.drawable.fog
+            id = fogImage
         )
         Cloud(modifier = Modifier.fillMaxWidth(0.5f)
             .height(300.dp)
             .offset(x=-80.dp,y=60.dp),
-            id = R.drawable.fog
+            id = fogImage
         )
         Cloud(modifier = Modifier.fillMaxWidth(0.5f)
             .height(300.dp)
             .offset(x=120.dp,y=60.dp),
-            id = R.drawable.fog
+            id = fogImage
         )
         Cloud(modifier = Modifier.fillMaxWidth(0.5f)
             .height(320.dp)
             .offset(x=60.dp,y=-200.dp),
-            id = R.drawable.cloud
+            id = cloudImage
         )
         Cloud(modifier = Modifier.fillMaxWidth(0.5f)
             .height(320.dp)
             .offset(x=-60.dp,y=-210.dp),
-            id = R.drawable.cloud
+            id = cloudImage
         )
         Cloud(modifier = Modifier.fillMaxWidth(0.5f)
             .height(300.dp)
             .offset(x=60.dp,y=-70.dp),
-            id = R.drawable.cloud
+            id = cloudImage
         )
         Cloud(modifier = Modifier.fillMaxWidth(0.5f)
             .height(300.dp)
             .offset(x=-60.dp,y=-70.dp),
-            id = R.drawable.cloud
+            id = cloudImage
         )
         Cloud(
             modifier = Modifier
                 .fillMaxWidth(0.5f)
                 .height(200.dp)
                 .offset(x = -75.dp, y = 25.dp),
-            id = R.drawable.cloud
+            id = cloudImage
         )
         Cloud(
             modifier = Modifier
                 .fillMaxWidth(0.5f)
                 .height(250.dp)
                 .offset(x = 75.dp, y = 60.dp),
-            id = R.drawable.cloud
+            id = cloudImage
         )
         Cloud(modifier = Modifier.fillMaxWidth(0.5f)
             .height(300.dp)
             .offset(x=60.dp,y=-300.dp),
-            id = R.drawable.fog
+            id = fogImage
         )
         Cloud(modifier = Modifier.fillMaxWidth(0.5f)
             .height(300.dp)
             .offset(x=-60.dp,y=-300.dp),
-            id = R.drawable.fog
+            id = fogImage
         )
     }
 }
