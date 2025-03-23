@@ -1,6 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("maven-publish")
 }
 
 android {
@@ -8,13 +9,14 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.swapnil.cloudanimation"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -45,7 +47,18 @@ android {
         }
     }
 }
-
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components.findByName("release") ?: throw GradleException("Release component not found"))
+                groupId = "com.github.Swapnil-J-Patil"
+                artifactId = "CloudAnimation"
+                version = "1.0.0"
+            }
+        }
+    }
+}
 dependencies {
 
     implementation(libs.androidx.core.ktx)

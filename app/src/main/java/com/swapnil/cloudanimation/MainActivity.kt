@@ -48,96 +48,97 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            CloudAnimationTheme {
-                var cloudsVisibility by remember { mutableStateOf(false) }
-                var magnifierVisibility by remember { mutableStateOf(false) }
+            var cloudsVisibility by remember { mutableStateOf(false) }
+            var magnifierVisibility by remember { mutableStateOf(false) }
 
-                val configuration = LocalConfiguration.current
-                val isPortrait = configuration.orientation == Configuration.ORIENTATION_PORTRAIT
-                val coroutineScope = rememberCoroutineScope()
-                var screen by remember { mutableStateOf("screen1") }
-                var flag by remember { mutableStateOf(false) }
+            val configuration = LocalConfiguration.current
+            val isPortrait = configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+            val coroutineScope = rememberCoroutineScope()
+            var screen by remember { mutableStateOf("screen1") }
+            var flag by remember { mutableStateOf(false) }
 
-                // ✅ Improved Tablet Detection
-                val isTab = configuration.screenWidthDp >= 600 && configuration.screenHeightDp >= 600
+            // ✅ Improved Tablet Detection
+            val isTab = configuration.screenWidthDp >= 600 && configuration.screenHeightDp >= 600
 
-                /*LaunchedEffect(Unit) {
-                    delay(500)
-                    cloudsVisibility = true
-                    delay(1000)
-                    magnifierVisibility = true
-                    delay(3000)
-                    magnifierVisibility = false
-                    cloudsVisibility = false
-                }*/
+            /*LaunchedEffect(Unit) {
+                delay(500)
+                cloudsVisibility = true
+                delay(1000)
+                magnifierVisibility = true
+                delay(3000)
+                magnifierVisibility = false
+                cloudsVisibility = false
+            }*/
 
-                /*LaunchedEffect(Unit) {
+            /*LaunchedEffect(Unit) {
+                cloudsVisibility = true
+                delay(2000)
+                cloudsVisibility = false
+                screen="screen1"
+            }*/
+            LaunchedEffect(flag) {
+                if (flag) {
                     cloudsVisibility = true
                     delay(2000)
                     cloudsVisibility = false
-                    screen="screen1"
-                }*/
-                LaunchedEffect(flag) {
-                    if(flag)
-                    {
-                        cloudsVisibility = true
-                        delay(2000)
-                        cloudsVisibility = false
-                        flag = false
+                    flag = false
+                }
+            }
+
+            Box()
+            {
+                when (screen) {
+                    "screen1" -> Screen1 {
+                        coroutineScope.launch {
+                            flag = true
+                            delay(1200)
+                            screen = it
+                        }
+                    }
+
+                    "screen2" -> Screen2 {
+                        coroutineScope.launch {
+                            flag = true
+                            delay(2000)
+                            screen = it
+                        }
                     }
                 }
-
-                Box()
-                {
-                    when (screen) {
-                        "screen1" -> Screen1 {
-                            coroutineScope.launch {
-                                flag=true
-                                delay(1200)
-                                screen = it
-                            }
-                        }
-                        "screen2" -> Screen2 {
-                            coroutineScope.launch {
-                                flag=true
-                                delay(2000)
-                                screen = it
-                            }
-                        }
+                when {
+                    isTab && isPortrait -> {
+                        Log.d("currentStatus", "Tab Portrait ")
+                        AnimatedCloudsScreenTab(
+                            searchText = "Searching for Opponents...",
+                            cloudVisibility = cloudsVisibility,
+                            magnifyingGlassVisibility = magnifierVisibility
+                        )
                     }
-                    when {
-                        isTab && isPortrait -> {
-                            Log.d("currentStatus", "Tab Portrait ")
-                            AnimatedCloudsScreenTab(
-                                searchText = "Searching for Opponents...",
-                                cloudVisibility = cloudsVisibility,
-                                magnifyingGlassVisibility = magnifierVisibility
-                            )
-                        }
-                        isTab && !isPortrait -> {
-                            Log.d("currentStatus", "Tab Landscape ")
-                            AnimatedCloudsScreenTabLandscape(
-                                searchText = "Searching for Opponents...",
-                                cloudVisibility = cloudsVisibility,
-                                magnifyingGlassVisibility = magnifierVisibility
-                            )
-                        }
-                        !isTab && isPortrait -> {
-                            Log.d("currentStatus", "Phone Portrait ")
-                            AnimatedCloudsScreen(
-                                searchText = "Searching for Opponents...",
-                                cloudVisibility = cloudsVisibility,
-                                magnifyingGlassVisibility = magnifierVisibility
-                            )
-                        }
-                        else -> {
-                            Log.d("currentStatus", "Phone Landscape ")
-                            AnimatedCloudsScreenLandscape(
-                                searchText = "Searching for Opponents...",
-                                cloudVisibility = cloudsVisibility,
-                                magnifyingGlassVisibility = magnifierVisibility
-                            )
-                        }
+
+                    isTab && !isPortrait -> {
+                        Log.d("currentStatus", "Tab Landscape ")
+                        AnimatedCloudsScreenTabLandscape(
+                            searchText = "Searching for Opponents...",
+                            cloudVisibility = cloudsVisibility,
+                            magnifyingGlassVisibility = magnifierVisibility
+                        )
+                    }
+
+                    !isTab && isPortrait -> {
+                        Log.d("currentStatus", "Phone Portrait ")
+                        AnimatedCloudsScreen(
+                            searchText = "Searching for Opponents...",
+                            cloudVisibility = cloudsVisibility,
+                            magnifyingGlassVisibility = magnifierVisibility
+                        )
+                    }
+
+                    else -> {
+                        Log.d("currentStatus", "Phone Landscape ")
+                        AnimatedCloudsScreenLandscape(
+                            searchText = "Searching for Opponents...",
+                            cloudVisibility = cloudsVisibility,
+                            magnifyingGlassVisibility = magnifierVisibility
+                        )
                     }
                 }
             }

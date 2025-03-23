@@ -9,7 +9,6 @@ import androidx.compose.ui.unit.sp
 import com.swapnil.cloudanimation.R
 
 // Set of Material typography styles to start with
-val Poppins = FontFamily(Font(R.font.poppins))
 val SupercellMagicFont = FontFamily(Font(R.font.supercell_font))
 
 val Typography = Typography(
