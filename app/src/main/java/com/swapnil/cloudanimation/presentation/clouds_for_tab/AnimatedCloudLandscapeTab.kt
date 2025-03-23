@@ -50,7 +50,7 @@ fun AnimatedCloudsScreenTab(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Purple80)
+            .background(Color.Transparent)
     ) {
        // TopCloudsTab(modifier = Modifier.offset(y=250.dp))
 

@@ -54,7 +54,7 @@ fun AnimatedCloudsScreenTabLandscape(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Purple80)
+            .background(Color.Transparent)
     ) {
         AnimatedVisibility(magnifierVisibility) {
             Box(

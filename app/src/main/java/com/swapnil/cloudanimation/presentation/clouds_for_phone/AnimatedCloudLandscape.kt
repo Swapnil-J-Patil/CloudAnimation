@@ -52,7 +52,7 @@ fun AnimatedCloudsScreenLandscape(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Purple80)
+            .background(Color.Transparent)
     ) {
 
         //  BottomCloudsTab()
