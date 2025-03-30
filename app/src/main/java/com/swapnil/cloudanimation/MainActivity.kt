@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            var cloudsVisibility by remember { mutableStateOf(false) }
+           /* var cloudsVisibility by remember { mutableStateOf(false) }
             var magnifierVisibility by remember { mutableStateOf(false) }
 
             val configuration = LocalConfiguration.current
@@ -60,7 +60,7 @@ class MainActivity : ComponentActivity() {
             // ✅ Improved Tablet Detection
             val isTab = configuration.screenWidthDp >= 600 && configuration.screenHeightDp >= 600
 
-            /*LaunchedEffect(Unit) {
+            *//*LaunchedEffect(Unit) {
                 delay(500)
                 cloudsVisibility = true
                 delay(1000)
@@ -68,14 +68,14 @@ class MainActivity : ComponentActivity() {
                 delay(3000)
                 magnifierVisibility = false
                 cloudsVisibility = false
-            }*/
+            }*//*
 
-            /*LaunchedEffect(Unit) {
+            *//*LaunchedEffect(Unit) {
                 cloudsVisibility = true
                 delay(2000)
                 cloudsVisibility = false
                 screen="screen1"
-            }*/
+            }*//*
             LaunchedEffect(flag) {
                 if (flag) {
                     cloudsVisibility = true
@@ -141,7 +141,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 }
-            }
+            }*/
         }
     }
 }
