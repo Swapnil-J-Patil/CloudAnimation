@@ -12,7 +12,7 @@ A Clash of Clans-style cloud animation library for screen transitions and loadin
   </tr>
 
   <tr>
-    <td><img src="https://github.com/user-attachments/assets/c5edc8b2-11cf-4c37-81b3-63ab29f5356b" alt="Cloud Animation" width="250"></td>
+    <td><img src="https://github.com/user-attachments/assets/c5edc8b2-11cf-4c37-81b3-63ab29f5356b" alt="Cloud Animation" width="300"></td>
     <td><img src="https://github.com/user-attachments/assets/47a81cd7-5be1-4ab2-b7d7-1223f61e6d7f" alt="Cloud Animation" width="400"></td>
   </tr>
 </table>
