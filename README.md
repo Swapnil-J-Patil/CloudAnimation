@@ -219,5 +219,5 @@ This project is licensed under the MIT License.
 
 ---
 
-Enjoy using **CustomToast** in your Jetpack Compose project! 🎉
+Enjoy using **Cloud Animation** in your Jetpack Compose project! 🎉
 
