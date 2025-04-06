@@ -4,7 +4,7 @@ A Clash of Clans-style cloud animation library for screen transitions and loadin
 
 ## 📸 Demos  
 
-**Cloud Animations**<br>
+**Searching for opponents**<br>
 <table>
   <tr>
     <th>Phone Portrait mode</th>
@@ -14,6 +14,19 @@ A Clash of Clans-style cloud animation library for screen transitions and loadin
   <tr>
     <td><img src="https://github.com/user-attachments/assets/c5edc8b2-11cf-4c37-81b3-63ab29f5356b" alt="Cloud Animation" width="300"></td>
     <td><img src="https://github.com/user-attachments/assets/47a81cd7-5be1-4ab2-b7d7-1223f61e6d7f" alt="Cloud Animation" width="400"></td>
+  </tr>
+</table>
+
+**Navigating Between screens**<br>
+<table>
+  <tr>
+    <th>Phone Portrait mode</th>
+    <th>Phone Landscape mode</th>
+  </tr>
+
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/b53f238b-bd1a-4dd4-a608-afedeacc76eb" alt="Cloud Animation" width="300"></td>
+    <td><img src="https://github.com/user-attachments/assets/923f540a-d569-4ec8-adff-43eeb15f3d6e" alt="Cloud Animation" width="400"></td>
   </tr>
 </table>
 
